@@ -19,7 +19,6 @@ def create_histogram(cells):
 			data[cell_x.value.split()[0]] = round(cell_y.value, 1)
 			continue
 		data[cell_x.value] = round(cell_y.value, 1)
-	print(data)
 	fig = draw(data)
 	return fig
 
