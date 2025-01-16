@@ -1,6 +1,5 @@
 from openpyxl import load_workbook
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import scipy.stats as sps
 import numpy as np
 
@@ -29,6 +28,8 @@ def draw(list_data):
 	fig.add_hrect(y0=np.mean(list(list_data.values())) * 0.998, y1=np.mean(list(list_data.values())) * 1.002, line_width=0, annotation_text=f"Ср.знач. = {round(np.mean(list(list_data.values())), 2)}", annotation_position="bottom right", fillcolor="blue", opacity=0.5)
 	if sps.mode(list(list_data.values())).count != 1:
 		fig.add_hrect(y0=sps.mode(list(list_data.values())).mode * 0.998, y1=sps.mode(list(list_data.values())).mode * 1.002, line_width=0, annotation_text=f"Мода = {sps.mode(list(list_data.values())).mode}", annotation_position="bottom right", fillcolor="red", opacity=0.5)
+	else:
+		fig.add_hrect(y0=max(list(list_data.values())) * 0.998, y1=max(list(list_data.values())) * 1.002, line_width=0, annotation_text=f"Мода = {max(list(list_data.values()))}", annotation_position="bottom right", fillcolor="red", opacity=0.5)
 	return fig
 
 fig_nauka = create_histogram(table_nauka)
